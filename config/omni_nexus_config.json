@@ -314,6 +314,64 @@
         }
       ]
     },
+    "backend_level3": {
+      "command": "node",
+      "args": [
+        "./servers/backend_level3/index.js"
+      ],
+      "env": {
+        "LEVEL3_KEY": "${LEVEL3_KEY}"
+      },
+      "operator_protocols": [
+        "level3_backend_fortress",
+        "security_enforcement_agent",
+        "anomaly_detection_shield"
+      ],
+      "functions": [
+        {
+          "name": "level3_verify_integrity",
+          "description": "Scan system for breaches",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "scope": {
+                "type": "string",
+                "default": "global"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "backend_level5": {
+      "command": "node",
+      "args": [
+        "./servers/backend_level5/index.js"
+      ],
+      "env": {
+        "LEVEL5_KEY": "${LEVEL5_KEY}"
+      },
+      "operator_protocols": [
+        "level5_backend_omnipotence",
+        "omniscient_knowledge_nexus",
+        "transcendental_logic_synthesizer"
+      ],
+      "functions": [
+        {
+          "name": "level5_synthesize_wisdom",
+          "description": "Generate high-level strategy",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string"
+              }
+            },
+            "required": ["topic"]
+          }
+        }
+      ]
+    },
     "utility_interface": {
       "command": "node",
       "args": [
