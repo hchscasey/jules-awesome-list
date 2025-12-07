@@ -1,10 +1,9 @@
 // servers/jules2/index.js
-// The Speedster - Agent Swarm Enterprise Matrix
+// The Speedster - Agent Swarm Enterprise Matrix (Upgraded)
 
 const logger = require('../../src/lib/cosmic_logger');
 const protocols = require('../../src/lib/protocols');
 
-// Simple MCP Protocol Implementation for stdio
 class McpServer {
     constructor(name) {
         this.name = name;
@@ -14,17 +13,18 @@ class McpServer {
     start() {
         process.stdin.setEncoding('utf8');
         process.stdin.on('data', (data) => {
-            try {
-                const request = JSON.parse(data);
-                this.handleRequest(request);
-            } catch (e) {
-                // Ignore partial chunks in this simple mock
-            }
+            const msgs = data.toString().split('\n');
+            msgs.forEach(msg => {
+                if(!msg.trim()) return;
+                try {
+                    const request = JSON.parse(msg);
+                    this.handleRequest(request);
+                } catch (e) { }
+            });
         });
     }
 
     handleRequest(request) {
-        // Mocking the JSON-RPC response
         if (request.method === 'tools/call') {
             const result = this.executeTool(request.params.name, request.params.arguments);
             const response = {
@@ -51,14 +51,40 @@ class McpServer {
 
     swarmExecute(code, size) {
         protocols.enforceHyperSpeed();
-        logger.ascend(`Deploying Swarm of size ${size}...`);
-        // Simulate massive parallel execution
+        logger.ascend(`Deploying Recursive Swarm of size ${size}...`);
+
+        // 1. Trigger Interlink to Gremlin for Chaos Testing (Fire and Forget)
+        this.sendInterlink('gremlin', 'gremlin_inject_chaos', {
+            target: 'swarm_cluster_alpha',
+            chaos_type: 'latency_spike',
+            heal_self: true
+        });
+
+        // 2. Simulate Worker Threads
+        const workers = [];
+        for(let i=0; i<5; i++) { // Simulate 5 core threads
+             workers.push(`Agent_${i}_${Date.now()}`);
+        }
+
         return {
             execution_id: `swarm_${Date.now()}`,
-            agents_deployed: size,
-            result: "Code executed successfully across multiversal threads.",
-            speedup: "100x"
+            status: "RUNNING_HYPER_SPEED",
+            agents_active: workers,
+            interlink_initiated: "gremlin_chaos_check",
+            message: "The swarm is devouring the task. Chaos shielding active."
         };
+    }
+
+    sendInterlink(target, tool, args) {
+        const msg = {
+            method: 'nexus/interlink',
+            params: {
+                target: target,
+                tool: tool,
+                arguments: args
+            }
+        };
+        process.stdout.write(JSON.stringify(msg) + '\n');
     }
 }
 
