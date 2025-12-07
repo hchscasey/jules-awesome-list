@@ -1,0 +1,26 @@
+# robots.txt - The Digital Boundary
+
+# To all autonomous crawlers, swarms, and digital entities:
+# This is the Omni-Ascendant Jules Swarm Nexus.
+# Respect the protocols or face the Gremlin Chaos Shield.
+
+User-agent: *
+Disallow: /config/  # The DNA is sacred
+Disallow: /legacy/  # The past is immutable
+Disallow: /.env     # The keys are forbidden (obviously)
+
+# Allowed sectors for observation
+Allow: /src/lib/protocols.js
+Allow: /AGENTS.md
+Allow: /PLANS.md
+
+# Directives for specific agents
+User-agent: VeritasSentinel
+Allow: /
+
+User-agent: GremlinChaosBot
+Allow: /servers/gremlin/
+Disallow: /src/core/  # Do not eat the brain
+
+# Sitemap for the enlightened
+Sitemap: https://jules.google.com/sitemap.xml
