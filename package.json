@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <img src=\"assets/jules-readme.png\" alt=\"Jules Awesome List\" width=\"600\"> </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hchscasey/jules-awesome-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hchscasey/jules-awesome-list/issues"
+  },
+  "homepage": "https://github.com/hchscasey/jules-awesome-list#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
